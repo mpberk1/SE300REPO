@@ -1,7 +1,7 @@
 
-public class InnerPlaneParts {
+public class PlaneParts {
 
-    
-} PlaneParts{
-
+public static void main(String[] args){
+System.out.println("Hello World");
+}
 }
