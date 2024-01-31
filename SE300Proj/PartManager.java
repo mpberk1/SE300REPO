@@ -4,5 +4,6 @@ public class PartManager {
         System.out.println("We Using GitHub here");
         System.out.println("This just so I can use a merge request.");
         System.out.println("Gamer move test");
-}
+        System.out.println("This just so I can use a merge request.");
+    }
 }
