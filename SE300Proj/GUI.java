@@ -7,7 +7,7 @@ public static void main(String args[])  throws IOException
 JFrame f= new JFrame("Example of TextField ");
 //variable declaration
 JTextField t12,t22;
-t12=new JTextField("Welcome!");
+t12=new JTextField("EPIC GAMER Name!");
 t12.setBounds(10,100, 100,30);
 //declaring new example
 t22=new JTextField("new example");
