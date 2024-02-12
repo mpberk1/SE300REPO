@@ -1,7 +1,6 @@
 public class Generiplane {
-    String tailnum;
+    String tailNumber;
     String planeType;
-    int engineNumber;
 
 
 }
