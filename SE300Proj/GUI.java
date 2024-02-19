@@ -10,6 +10,8 @@ t12=new JTextField("\t\tEPIC GAMER Name!");
 t12.setBounds(300,600, 250,300);
 
 f.add(t12);
+String t12S = t12.getText();
+System.out.println(t12S);
 f.setSize(500,500);
 f.setVisible(true);
 }
