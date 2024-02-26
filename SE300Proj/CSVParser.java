@@ -33,7 +33,7 @@ public class CSVParser {
             String value = rows.get(200001)[0]; // First row, first column
             System.out.println(headers[1]);
             System.out.println(value);
-
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
