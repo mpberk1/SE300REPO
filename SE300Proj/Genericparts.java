@@ -1,9 +1,9 @@
-public class Generiplane{
+public class Genericparts{
     String Fuslage;
     String Engine;
     String empanage;
 
-    public details{
+    public class details{
         String name;
         String date;
         String history;
