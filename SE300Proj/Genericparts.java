@@ -1,14 +1,14 @@
-public class Generiplane{
-    String Fuslage;
-    String Engine;
-    String empanage;
+public class Genericparts{
+     String Fuslage;
+     String Engine;
+     String empanage;
 
-    public details{
+    public void details () {
         String name;
         String date;
         String history;
         String size;
+        }
 
-    }
 
 }
