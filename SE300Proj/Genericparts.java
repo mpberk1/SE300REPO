@@ -1,7 +1,15 @@
 public class Genericparts{
      String Fuslage;
      String Engine;
-     String empanage;
+     String Empanage;
+
+     public Genericparts(String Fuslage, String Engine, String Empanage){
+
+        this.Fuslage = Fuslage;
+        this.Engine = Engine;
+        this.Empanage = Empanage;
+
+     }
 
     public void details () {
         String name;
@@ -14,24 +22,24 @@ public class Genericparts{
         return Fuslage;
     }
 
-    public void setFuslage(String fuslage) {
-        Fuslage = fuslage;
+    public void setFuslage(String Fuslage) {
+        Fuslage = Fuslage;
     }
 
     public String getEngine() {
         return Engine;
     }
 
-    public void setEngine(String engine) {
-        Engine = engine;
+    public void setEngine(String Engine) {
+        Engine = Engine;
     }
 
     public String getEmpanage() {
-        return empanage;
+        return Empanage;
     }
 
-    public void setEmpanage(String empanage) {
-        this.empanage = empanage;
+    public void setEmpanage(String Empanage) {
+        this.Empanage = Empanage;
     }
 
 
