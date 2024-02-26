@@ -23,7 +23,7 @@ public class Genericparts{
     }
 
     public void setFuslage(String Fuslage) {
-        Fuslage = Fuslage;
+        this.Fuslage = Fuslage;
     }
 
     public String getEngine() {
@@ -31,7 +31,7 @@ public class Genericparts{
     }
 
     public void setEngine(String Engine) {
-        Engine = Engine;
+        this.Engine = Engine;
     }
 
     public String getEmpanage() {
