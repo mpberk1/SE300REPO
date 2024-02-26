@@ -1,12 +1,7 @@
-public class Generiplane {
+public class Generiplane extends Genericparts{
     String tailNumber;
     String planeType;
-    String rudder;
-    String flap;
-    String leftEngine;
-    String rightEngine;
-
-    String empanage;
+   
 
 
 
