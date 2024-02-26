@@ -1,4 +1,4 @@
-public class Generiplane extends Genericparts{
+public class Genericplane{
     String tailNumber;
     String planeType;
    
