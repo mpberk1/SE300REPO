@@ -30,7 +30,7 @@ public class CSVParser {
             // Now you have your data in a List<String[]>.
             // Access it like rows.get(rowIndex)[columnIndex].
             // For example:
-            String value = rows.get(200001)[0]; // First row, first column
+            String value = rows.get(200000)[0]; // First row, first column
             System.out.println(headers[1]);
             System.out.println(value);
 
