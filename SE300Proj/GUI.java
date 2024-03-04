@@ -21,7 +21,7 @@ class GUI {
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String userSearchString = t12.getText();
-                outputArea.setText("Text grabbed: " + t12S);
+                outputArea.setText("Text grabbed: " + userSearchString);
             }
         });
 
