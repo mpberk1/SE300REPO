@@ -5,11 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.IOException;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 class CSVParser {
     private boolean check;
 

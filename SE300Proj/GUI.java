@@ -1,13 +1,10 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 class GUI {
     private String userSearchString;
-    
+
     public static void main(String args[]) throws IOException {
         JFrame f = new JFrame("Plane Search");
         GUI myobj = new GUI();
@@ -31,7 +28,7 @@ class GUI {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
                 outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
-                
+
                 // Call the parseCSV method of CSVParser
                 ob1.parseCSV(myobj.getUserSearchString(), outputArea);
             }
@@ -52,7 +49,7 @@ class GUI {
         f.setLayout(null);
         f.setVisible(true);
     }
-    
+
     public void setUserSearchString(String userSearchString) {
         this.userSearchString = userSearchString;
     }
