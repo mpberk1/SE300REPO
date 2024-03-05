@@ -44,13 +44,12 @@ class CSVParser {
                     if (getCheck()) {
                         for (int j = 1; j < 34; j++) {
                             String output = rows.get(userTailNumberRow)[j];
-                            outputArea.append("UserInfo " + output + "\n");
+                            outputArea.append(headers[j] + output + "\n");
                         }
                         return; // Exit the method if found
                     }
+                }
             }
-        }
-
 
             // If not found
             outputArea.setText("Text not found: " + searchString);
@@ -58,10 +57,8 @@ class CSVParser {
         } catch (IOException e) {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
-        }  
+        }
     }
-
-   
 
     public void setCheck(boolean check) {
         this.check = check;
@@ -70,5 +67,5 @@ class CSVParser {
     public boolean getCheck() {
         return check;
     }
-    
+
 }

@@ -27,7 +27,7 @@ class GUI {
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
-                //outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
+                // outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
 
                 // Call the parseCSV method of CSVParser
                 ob1.parseCSV(myobj.getUserSearchString(), outputArea);
