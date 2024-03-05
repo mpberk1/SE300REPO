@@ -14,6 +14,9 @@ class GUI {
         JButton grabButton = new JButton("Grab Text");
         grabButton.setBounds(200, 250, 100, 30);
 
+        JButton closeButton = new JButton("Close");
+        closeButton.setBounds(200, 400, 100, 30);
+
         JTextArea outputArea = new JTextArea();
         outputArea.setEditable(false);
         outputArea.setBounds(150, 300, 200, 100);
@@ -25,8 +28,15 @@ class GUI {
             }
         });
 
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                f.dispose(); // Close the JFrame
+            }
+        });
+
         f.add(t12);
         f.add(grabButton);
+        f.add(closeButton);
         f.add(outputArea);
 
         f.setSize(500, 500);
