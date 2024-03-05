@@ -34,14 +34,23 @@ class CSVParser {
             // Access it like rows.get(rowIndex)[columnIndex].
             // For example:
             // String value = rows.get(0)[0]; // First row, first column
+            int userTailNumberRow = 0;
             for (int i = 0; i < rows.size(); i++) {
                 String value = rows.get(i)[0];
                 if (value.equalsIgnoreCase(searchString)) {
                     setCheck(true);
-                    outputArea.setText("Text found: " + searchString);
-                    return; // Exit the method if found
-                }
+                    outputArea.append("Tail Number found: " + searchString + "\n");
+                    userTailNumberRow = i;
+                    if (getCheck()) {
+                        for (int j = 1; j < 34; j++) {
+                            String output = rows.get(userTailNumberRow)[j];
+                            outputArea.append("UserInfo " + output + "\n");
+                        }
+                        return; // Exit the method if found
+                    }
             }
+        }
+
 
             // If not found
             outputArea.setText("Text not found: " + searchString);
@@ -49,8 +58,10 @@ class CSVParser {
         } catch (IOException e) {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
-        }
+        }  
     }
+
+   
 
     public void setCheck(boolean check) {
         this.check = check;
@@ -59,4 +70,5 @@ class CSVParser {
     public boolean getCheck() {
         return check;
     }
+    
 }
