@@ -1,9 +1,9 @@
 public class Genericdetails {
     
-    String name;
-    String date;
-    String history;
-    String size;
+    private String name;
+    private  String date;
+    private String history;
+    private String size;
 
 public Genericdetails (String name, String date, String history, String size){
 
