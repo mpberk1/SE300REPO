@@ -1,11 +1,14 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.awt.*;
 
 class GUI {
+    private String userSearchString;
+
     public static void main(String args[]) throws IOException {
         JFrame f = new JFrame("Plane Search");
+        GUI myobj = new GUI();
+        CSVParser ob1 = new CSVParser();
         JTextField t12;
         t12 = new JTextField("EPIC GAMER Name!");
         t12.setHorizontalAlignment(JTextField.CENTER); // Center align the text
@@ -23,8 +26,11 @@ class GUI {
 
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String userSearchString = t12.getText();
-                outputArea.setText("Text grabbed: " + userSearchString);
+                myobj.setUserSearchString(t12.getText());
+                // outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
+
+                // Call the parseCSV method of CSVParser
+                ob1.parseCSV(myobj.getUserSearchString(), outputArea);
             }
         });
 
@@ -39,8 +45,16 @@ class GUI {
         f.add(closeButton);
         f.add(outputArea);
 
-        f.setSize(500, 500);
+        f.setSize(1000, 1000);
         f.setLayout(null);
         f.setVisible(true);
+    }
+
+    public void setUserSearchString(String userSearchString) {
+        this.userSearchString = userSearchString;
+    }
+
+    public String getUserSearchString() {
+        return userSearchString;
     }
 }
