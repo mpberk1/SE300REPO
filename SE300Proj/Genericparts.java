@@ -1,22 +1,23 @@
-public class Genericparts{
+public class Genericparts extends Genericdetails{
     String Fuslage;
     String Engine;
     String Empanage;
+    String Wing;
 
-    public Genericparts(String Fuslage, String Engine, String Empanage){
+    public Genericdetails(String name, String date, String history, String size) {
+            super(name, date, history, size);
+    }
+
+
+
+    public Genericparts(String Fuslage, String Engine, String Empanage, String Wing){
 
        this.Fuslage = Fuslage;
        this.Engine = Engine;
        this.Empanage = Empanage;
+       this.Wing = Wing;
 
     }
-
-   public void details () {
-       String name;
-       String date;
-       String history;
-       String size;
-       }
 
    public String getFuslage() {
        return Fuslage;
@@ -42,5 +43,13 @@ public class Genericparts{
        this.Empanage = Empanage;
    }
 
+   public String getWing() {
+    return Wing;
+    }
+
+public void setWing(String Wing) {
+    this.Wing = Wing;
+
+    }
 
 }

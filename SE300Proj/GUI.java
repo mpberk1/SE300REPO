@@ -4,33 +4,39 @@ import java.io.IOException;
 
 class GUI {
     private String userSearchString;
+    private String userUniqueCode;
 
     public static void main(String args[]) throws IOException {
         JFrame f = new JFrame("Plane Search");
         GUI myobj = new GUI();
         CSVParser ob1 = new CSVParser();
         JTextField t12;
-        t12 = new JTextField("EPIC GAMER Name!");
+        t12 = new JTextField("Enter Tail Number");
         t12.setHorizontalAlignment(JTextField.CENTER); // Center align the text
-        t12.setBounds(150, 200, 200, 30);
+        t12.setBounds(150, 50, 200, 30);
+
+        JTextField tUniqueCode;
+        tUniqueCode = new JTextField("Enter Unique Code");
+        tUniqueCode.setHorizontalAlignment(JTextField.CENTER); // Center align the text
+        tUniqueCode.setBounds(150, 100, 200, 30);
 
         JButton grabButton = new JButton("Grab Text");
-        grabButton.setBounds(200, 250, 100, 30);
+        grabButton.setBounds(200, 150, 100, 30);
 
         JButton closeButton = new JButton("Close");
-        closeButton.setBounds(200, 400, 100, 30);
+        closeButton.setBounds(200, 250, 100, 30);
 
         JTextArea outputArea = new JTextArea();
         outputArea.setEditable(false);
-        outputArea.setBounds(150, 300, 200, 100);
+        outputArea.setBounds(50, 300, 400, 300);
 
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
-                // outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
-
+                myobj.setUserUniqueCode(tUniqueCode.getText());
+                
                 // Call the parseCSV method of CSVParser
-                ob1.parseCSV(myobj.getUserSearchString(), outputArea);
+                ob1.parseCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea);
             }
         });
 
@@ -41,11 +47,12 @@ class GUI {
         });
 
         f.add(t12);
+        f.add(tUniqueCode);
         f.add(grabButton);
         f.add(closeButton);
         f.add(outputArea);
 
-        f.setSize(1000, 1000);
+        f.setSize(500, 700); // Increased window size
         f.setLayout(null);
         f.setVisible(true);
     }
@@ -56,5 +63,13 @@ class GUI {
 
     public String getUserSearchString() {
         return userSearchString;
+    }
+    
+    public void setUserUniqueCode(String userUniqueCode) {
+        this.userUniqueCode = userUniqueCode;
+    }
+
+    public String getUserUniqueCode() {
+        return userUniqueCode;
     }
 }
