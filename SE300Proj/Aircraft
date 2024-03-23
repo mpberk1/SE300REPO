@@ -1,0 +1,110 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Aircraft {
+    private String tailNumber;
+    private Map<String, Component> components;
+
+    public Aircraft(String tailNumber) {
+        this.tailNumber = tailNumber;
+        components = new HashMap<>();
+    }
+
+    public void addComponent(String componentName) {
+        components.put(componentName, new Component(componentName));
+    }
+
+    public Component getComponent(String componentName) {
+        return components.get(componentName);
+    }
+
+    public String getTailNumber() {
+        return tailNumber;
+    }
+}
+
+class Component {
+    private String componentName;
+    private Map<String, String> parts;
+
+    public Component(String componentName) {
+        this.componentName = componentName;
+        parts = new HashMap<>();
+    }
+
+    public void addPart(String partName, String partDetail) {
+        parts.put(partName, partDetail);
+    }
+
+    public String getComponentName() {
+        return componentName;
+    }
+
+    public String getPartDetail(String partName) {
+        return parts.get(partName);
+    }
+}
+
+public class AircraftSystem {
+    private static Map<String, Aircraft> aircrafts = new HashMap<>();
+
+    public static void main(String[] args) {
+        // Create sample aircraft with components and parts
+        Aircraft aircraft1 = new Aircraft("ABC123");
+        aircraft1.addComponent("Fuselage");
+        aircraft1.getComponent("Fuselage").addPart("Front Fuselage", "Details of front fuselage");
+        aircraft1.getComponent("Fuselage").addPart("Rear Fuselage", "Details of rear fuselage");
+        aircraft1.addComponent("Empennage");
+        aircraft1.getComponent("Empennage").addPart("Horizontal Stabilizer", "Details of horizontal stabilizer");
+        aircraft1.getComponent("Empennage").addPart("Vertical Stabilizer", "Details of vertical stabilizer");
+        aircraft1.addComponent("Engine");
+        aircraft1.getComponent("Engine").addPart("Engine 1", "Details of engine 1");
+        aircraft1.getComponent("Engine").addPart("Engine 2", "Details of engine 2");
+        aircraft1.addComponent("Wings");
+        aircraft1.getComponent("Wings").addPart("Left Wing", "Details of left wing");
+        aircraft1.getComponent("Wings").addPart("Right Wing", "Details of right wing");
+        aircrafts.put(aircraft1.getTailNumber(), aircraft1);
+
+        // Sample search
+        searchAircraft("ABC123");
+    }
+
+    public static void searchAircraft(String tailNumber) {
+        Aircraft aircraft = aircrafts.get(tailNumber);
+        if (aircraft != null) {
+            System.out.println("Aircraft found with tail number: " + aircraft.getTailNumber());
+            Scanner scanner = new Scanner(System.in);
+            String choice;
+            do {
+                System.out.println("Select component to view details (type 'exit' to exit):");
+                for (String componentName : aircraft.components.keySet()) {
+                    System.out.println(componentName);
+                }
+                choice = scanner.nextLine();
+                if (!choice.equalsIgnoreCase("exit")) {
+                    Component component = aircraft.getComponent(choice);
+                    if (component != null) {
+                        System.out.println("Component: " + component.getComponentName());
+                        System.out.println("Parts:");
+                        for (String partName : component.parts.keySet()) {
+                            System.out.println(partName);
+                        }
+                        System.out.println("Enter part name to view details:");
+                        String partChoice = scanner.nextLine();
+                        String partDetail = component.getPartDetail(partChoice);
+                        if (partDetail != null) {
+                            System.out.println("Detail: " + partDetail);
+                        } else {
+                            System.out.println("Part not found.");
+                        }
+                    } else {
+                        System.out.println("Component not found.");
+                    }
+                }
+            } while (!choice.equalsIgnoreCase("exit"));
+        } else {
+            System.out.println("Aircraft not found with tail number: " + tailNumber);
+        }
+    }
+}
