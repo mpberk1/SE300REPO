@@ -22,7 +22,7 @@ class GUI {
         tUniqueCode.setHorizontalAlignment(JTextField.CENTER); 
         tUniqueCode.setBounds(150, 100, 200, 30);
 
-        JButton grabButton = new JButton("Grab Text");
+        JButton grabButton = new JButton("Search");
         grabButton.setBounds(200, 150, 100, 30);
 
         JButton closeButton = new JButton("Close");
