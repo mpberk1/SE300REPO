@@ -47,8 +47,10 @@ class CSVParser {
                             if (storedUniqueCode.equals(uniqueCode)) {
                                 // Output other information from columns
                                 for (int j = 1; j < 34; j++) {
-                                    String output = rows.get(userTailNumberRow)[j];
-                                    outputArea.append(headers[j] + ": " + output + "\n");
+                                    if(j < 7 || j > 13){
+                                        String output = rows.get(userTailNumberRow)[j];
+                                        outputArea.append(headers[j] + ": " + output + "\n");
+                                    }
                                 }
                                 return; // Exit the method if found and unique code matches
                             } else {
