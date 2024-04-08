@@ -32,7 +32,7 @@ class CSVParser {
                 writer.append("Tail Number,Engine,Empennage,Wings,Fuselage\n");
                 for (int i = 0; i < rows.size(); i++) {
                     String[] rowData = rows.get(i);
-                    writer.append(rowData[0]); // Write Tail Number
+                    writer.append(rowData[0]); // Write Tail Numbers
                     writer.append(",");
                     writer.append("0");
                     writer.append(",");
