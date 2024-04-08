@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,36 @@ class CSVParser {
             }
             String[] headers = headerLine.split(",");
 
+            // Write data to LOG.csv
+
             // Read and process data rows
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
+            }
+
+            try (FileWriter writer = new FileWriter("LOG.csv")) {
+                // Writing headers
+                writer.append("Tail Number,Engine,Empennage,Wings,Fuselage\n");
+                for (int i = 0; i < rows.size(); i++) {
+                    String[] rowData = rows.get(i);
+                    writer.append(rowData[0]); // Write Tail Number
+                    writer.append(","); // Add a comma to separate columns
+                    writer.append("0"); // Write Engine data
+                    writer.append(","); // Add a comma to separate columns
+                    writer.append("0"); // Write Empennage data
+                    writer.append(","); // Add a comma to separate columns
+                    writer.append("0"); // Write Wings data
+                    writer.append(","); // Add a comma to separate columns
+                    writer.append("0"); // Write Fuselage data
+                    writer.append("\n"); // Move to the next line
+                }
+
+                writer.flush(); // Flush the writer
+                outputArea.append("Data written to LOG.csv\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+                outputArea.setText("Error occurred while writing to LOG.csv: " + e.getMessage());
             }
 
             // Now you have your data in a List<String[]>.
@@ -52,6 +79,7 @@ class CSVParser {
                                         outputArea.append(headers[j] + ": " + output + "\n");
                                     }
                                 }
+                                
                                 return; // Exit the method if found and unique code matches
                             } else {
                                 outputArea.append("Incorrect Unique Code!\n");
