@@ -16,7 +16,6 @@ class CSVParser {
             List<String[]> rows = new ArrayList<>();
             String line;
 
-            // Read the header row
             String headerLine = reader.readLine();
             if (headerLine == null) {
                 outputArea.setText("CSV file is empty.");
@@ -24,43 +23,35 @@ class CSVParser {
             }
             String[] headers = headerLine.split(",");
 
-            // Write data to LOG.csv
-
-            // Read and process data rows
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
             }
 
             try (FileWriter writer = new FileWriter("LOG.csv")) {
-                // Writing headers
                 writer.append("Tail Number,Engine,Empennage,Wings,Fuselage\n");
                 for (int i = 0; i < rows.size(); i++) {
                     String[] rowData = rows.get(i);
                     writer.append(rowData[0]); // Write Tail Number
-                    writer.append(","); // Add a comma to separate columns
-                    writer.append("0"); // Write Engine data
-                    writer.append(","); // Add a comma to separate columns
-                    writer.append("0"); // Write Empennage data
-                    writer.append(","); // Add a comma to separate columns
-                    writer.append("0"); // Write Wings data
-                    writer.append(","); // Add a comma to separate columns
-                    writer.append("0"); // Write Fuselage data
-                    writer.append("\n"); // Move to the next line
+                    writer.append(",");
+                    writer.append("0");
+                    writer.append(",");
+                    writer.append("0");
+                    writer.append(",");
+                    writer.append("0");
+                    writer.append(",");
+                    writer.append("0");
+                    writer.append("\n");
                 }
 
-                writer.flush(); // Flush the writer
+                writer.flush();
                 outputArea.append("Data written to LOG.csv\n");
             } catch (IOException e) {
                 e.printStackTrace();
                 outputArea.setText("Error occurred while writing to LOG.csv: " + e.getMessage());
             }
 
-            // Now you have your data in a List<String[]>.
-            // Access it like rows.get(rowIndex)[columnIndex].
-            // For example:
-            // String value = rows.get(0)[0]; // First row, first column
-            int userTailNumberRow = -1; // Initialize to -1 to indicate not found
+            int userTailNumberRow = -1;
             for (int i = 0; i < rows.size(); i++) {
                 String value = rows.get(i)[0];
                 if (value.equalsIgnoreCase(searchString)) {
@@ -68,22 +59,20 @@ class CSVParser {
                     outputArea.append("Tail Number found: " + searchString + "\n");
                     userTailNumberRow = i;
                     if (getCheck()) {
-                        // Check if the row contains the unique code in the 30th column
                         if (rows.get(userTailNumberRow).length > 30) {
                             String storedUniqueCode = rows.get(userTailNumberRow)[30];
                             if (storedUniqueCode.equals(uniqueCode)) {
-                                // Output other information from columns
                                 for (int j = 1; j < 34; j++) {
-                                    if(j < 7 || j > 13){
+                                    if (j < 7 || j > 13) {
                                         String output = rows.get(userTailNumberRow)[j];
                                         outputArea.append(headers[j] + ": " + output + "\n");
                                     }
                                 }
-                                
-                                return; // Exit the method if found and unique code matches
+
+                                return;
                             } else {
                                 outputArea.append("Incorrect Unique Code!\n");
-                                return; // Exit if unique code doesn't match
+                                return;
                             }
                         } else {
                             outputArea.append("Unique Code not found for the given tail number.\n");
@@ -92,7 +81,6 @@ class CSVParser {
                 }
             }
 
-            // If not found
             outputArea.setText("Tail Number not found: " + searchString);
 
         } catch (IOException e) {
