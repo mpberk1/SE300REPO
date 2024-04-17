@@ -28,8 +28,7 @@ class CSVParser {
                 rows.add(data);
             }
 
-            try (FileWriter writer = new FileWriter("LOG.csv")) {
-                writer.append("Tail Number,Engine,Empennage,Wings,Fuselage\n");
+            try (FileWriter writer = new FileWriter("LOG.csv", true)) { // Set append flag to true
                 for (int i = 0; i < rows.size(); i++) {
                     String[] rowData = rows.get(i);
                     writer.append(rowData[0]); // Write Tail Numbers
@@ -44,8 +43,7 @@ class CSVParser {
                     writer.append("\n");
                 }
 
-                writer.flush();
-                outputArea.append("Data written to LOG.csv\n");
+                outputArea.append("Data appended to LOG.csv\n");
             } catch (IOException e) {
                 e.printStackTrace();
                 outputArea.setText("Error occurred while writing to LOG.csv: " + e.getMessage());
