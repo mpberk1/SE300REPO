@@ -27,11 +27,15 @@ class GUI {
         grabButton.setBounds(200, 150, 100, 30);
 
         JButton closeButton = new JButton("Close");
-        closeButton.setBounds(200, 250, 100, 30);
+        closeButton.setBounds(50, 600, 100, 30);
+
+        JButton updateButton = new JButton("Update");
+        updateButton.setBounds(200, 600, 100, 30);
+        updateButton.setEnabled(false);
 
         JTextArea outputArea = new JTextArea();
         outputArea.setEditable(false);
-        outputArea.setBounds(50, 300, 400, 300);
+        outputArea.setBounds(50, 200, 400, 300);
 
         // Text fields for editing parts and dates
         JTextField[] editFields = new JTextField[5]; // Only 5 fields available in LOG.csv
@@ -43,10 +47,6 @@ class GUI {
             editFields[i].setVisible(false); // Initially hide
             f.add(editFields[i]);
         }
-
-        JButton updateButton = new JButton("Update");
-        updateButton.setBounds(200, 600, 100, 30);
-        updateButton.setEnabled(false);
 
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -65,8 +65,12 @@ class GUI {
 
         updateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Update CSV with edited data
-                // Implement this part
+                String[] newData = new String[5];
+                for (int i = 0; i < 5; i++) {
+                    newData[i] = editFields[i].getText();
+                }
+                ob1.updateLogCSV(myobj.getUserSearchString(), newData);
+                outputArea.setText("Data updated successfully!");
             }
         });
 
@@ -80,8 +84,8 @@ class GUI {
         f.add(tUniqueCode);
         f.add(grabButton);
         f.add(closeButton);
-        f.add(outputArea);
         f.add(updateButton);
+        f.add(outputArea);
 
         f.setSize(500, 700);
         f.setLayout(null);

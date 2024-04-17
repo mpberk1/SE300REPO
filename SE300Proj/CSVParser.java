@@ -43,6 +43,7 @@ class CSVParser {
                                 for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
                                     editFields[j - 1].setEditable(true);
                                 }
+                                updateButton.setEnabled(true);
                                 return;
                             } else {
                                 outputArea.append("Incorrect Unique Code!\n");
@@ -100,6 +101,33 @@ class CSVParser {
         } catch (IOException e) {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
+        }
+    }
+
+    public void updateLogCSV(String searchString, String[] newData) {
+        String csvFilePath = "LOG.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+            List<String> fileContent = new ArrayList<>();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(searchString)) {
+                    line = searchString + "," + newData[0] + "," + newData[1] + "," + newData[2] + "," + newData[3] + "," + newData[4];
+                }
+                fileContent.add(line);
+            }
+
+            try (FileWriter writer = new FileWriter(csvFilePath)) {
+                for (String updatedLine : fileContent) {
+                    writer.write(updatedLine + "\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
