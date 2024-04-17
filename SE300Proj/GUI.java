@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
+
 class GUI {
     private String userSearchString;
     private String userUniqueCode;
@@ -11,15 +12,15 @@ class GUI {
         JFrame f = new JFrame("Plane Search");
         GUI myobj = new GUI();
         CSVParser ob1 = new CSVParser();
+
         JTextField t12;
         t12 = new JTextField("Enter Tail Number");
         t12.setHorizontalAlignment(JTextField.CENTER);
         t12.setBounds(150, 50, 200, 30);
-        
 
         JTextField tUniqueCode;
         tUniqueCode = new JTextField("Enter Unique Code");
-        tUniqueCode.setHorizontalAlignment(JTextField.CENTER); 
+        tUniqueCode.setHorizontalAlignment(JTextField.CENTER);
         tUniqueCode.setBounds(150, 100, 200, 30);
 
         JButton grabButton = new JButton("Search");
@@ -32,13 +33,40 @@ class GUI {
         outputArea.setEditable(false);
         outputArea.setBounds(50, 300, 400, 300);
 
+        // Text fields for editing parts and dates
+        JTextField[] editFields = new JTextField[5]; // Only 5 fields available in LOG.csv
+        for (int i = 0; i < 5; i++) {
+            editFields[i] = new JTextField();
+            editFields[i].setBounds(150, 200 + i * 50, 200, 30);
+            editFields[i].setHorizontalAlignment(JTextField.CENTER);
+            editFields[i].setEditable(false);
+            editFields[i].setVisible(false); // Initially hide
+            f.add(editFields[i]);
+        }
+
+        JButton updateButton = new JButton("Update");
+        updateButton.setBounds(200, 600, 100, 30);
+        updateButton.setEnabled(false);
+
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
                 myobj.setUserUniqueCode(tUniqueCode.getText());
-                
-                // Call the parseCSV method of CSVParser
-                ob1.parseCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea);
+                // Call the parseMasterCSV method of CSVParser
+                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
+                // Call the parseLogCSV method of CSVParser
+                ob1.parseLogCSV(myobj.getUserSearchString(), outputArea, editFields);
+                // Show the edit fields after search
+                for (int i = 0; i < 5; i++) {
+                    editFields[i].setVisible(true);
+                }
+            }
+        });
+
+        updateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Update CSV with edited data
+                // Implement this part
             }
         });
 
@@ -53,15 +81,16 @@ class GUI {
         f.add(grabButton);
         f.add(closeButton);
         f.add(outputArea);
+        f.add(updateButton);
 
-        f.setSize(500, 700); 
+        f.setSize(500, 700);
         f.setLayout(null);
         f.getContentPane().setBackground(new Color(135, 206, 235));
         f.setVisible(true);
 
         // Change button color
-        UIManager.put("Button.background", UIManager.getColor("Panel.background")); 
-        UIManager.put("Button.foreground", UIManager.getColor("Panel.foreground")); 
+        UIManager.put("Button.background", UIManager.getColor("Panel.background"));
+        UIManager.put("Button.foreground", UIManager.getColor("Panel.foreground"));
     }
 
     public void setUserSearchString(String userSearchString) {
@@ -71,7 +100,7 @@ class GUI {
     public String getUserSearchString() {
         return userSearchString;
     }
-    
+
     public void setUserUniqueCode(String userUniqueCode) {
         this.userUniqueCode = userUniqueCode;
     }

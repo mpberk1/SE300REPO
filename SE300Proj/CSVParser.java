@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
+
 class CSVParser {
     private boolean check;
 
-    public void parseCSV(String searchString, String uniqueCode, JTextArea outputArea) {
+    public void parseMasterCSV(String searchString, String uniqueCode, JTextArea outputArea, JTextField[] editFields, JButton updateButton) {
         String csvFilePath = "Master 1.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
@@ -28,31 +29,6 @@ class CSVParser {
                 rows.add(data);
             }
 
-            try (FileWriter writer = new FileWriter("LOG.csv")) {
-                writer.append("Tail Number,Engine,Empennage,Wings,Fuselage,Date Last Maintained\n");
-                for (int i = 0; i < rows.size(); i++) {
-                    String[] rowData = rows.get(i);
-                    writer.append(rowData[0]); // Write Tail Numbers
-                    writer.append(",");
-                    writer.append("0");
-                    writer.append(",");
-                    writer.append("0");
-                    writer.append(",");
-                    writer.append("0");
-                    writer.append(",");
-                    writer.append("0");
-                    writer.append(",");
-                    writer.append("0");
-                    writer.append("\n");
-                }
-
-                writer.flush();
-                outputArea.append("Data written to LOG.csv\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-                outputArea.setText("Error occurred while writing to LOG.csv: " + e.getMessage());
-            }
-
             int userTailNumberRow = -1;
             for (int i = 0; i < rows.size(); i++) {
                 String value = rows.get(i)[0];
@@ -64,13 +40,9 @@ class CSVParser {
                         if (rows.get(userTailNumberRow).length > 30) {
                             String storedUniqueCode = rows.get(userTailNumberRow)[30];
                             if (storedUniqueCode.equals(uniqueCode)) {
-                                for (int j = 1; j < 34; j++) {
-                                    if (j < 7 || j > 13) {
-                                        String output = rows.get(userTailNumberRow)[j];
-                                        outputArea.append(headers[j] + ": " + output + "\n");
-                                    }
+                                for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
+                                    editFields[j - 1].setEditable(true);
                                 }
-
                                 return;
                             } else {
                                 outputArea.append("Incorrect Unique Code!\n");
@@ -84,6 +56,46 @@ class CSVParser {
             }
 
             outputArea.setText("Tail Number not found: " + searchString);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            outputArea.setText("Error occurred: " + e.getMessage());
+        }
+    }
+
+    public void parseLogCSV(String searchString, JTextArea outputArea, JTextField[] editFields) {
+        String csvFilePath = "LOG.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+            List<String[]> rows = new ArrayList<>();
+            String line;
+
+            String headerLine = reader.readLine();
+            if (headerLine == null) {
+                outputArea.setText("LOG.csv file is empty.");
+                return;
+            }
+            String[] headers = headerLine.split(",");
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                rows.add(data);
+            }
+
+            int userTailNumberRow = -1;
+            for (int i = 0; i < rows.size(); i++) {
+                String value = rows.get(i)[0];
+                if (value.equalsIgnoreCase(searchString)) {
+                    userTailNumberRow = i;
+                    for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
+                        String output = rows.get(userTailNumberRow)[j];
+                        editFields[j - 1].setText(output);
+                    }
+                    return;
+                }
+            }
+
+            outputArea.setText("Tail Number not found in LOG.csv: " + searchString);
 
         } catch (IOException e) {
             e.printStackTrace();
