@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,19 +66,42 @@ class CSVParser {
     }
 
     public void parseLogCSV(String searchString, JTextArea outputArea, JTextField[] editFields) {
-        String csvFilePath = "LOG.csv";
+    String csvFilePath = "LOG.csv";
 
+    try {
+        // Create LOG.csv file if it doesn't exist
+        boolean fileExists = new File(csvFilePath).exists();
+        if (!fileExists) {
+            FileWriter writer = new FileWriter(csvFilePath);
+            writer.append("Tail Number,Engine,Empennage,Wings,Fuselage,Date Maintained\n");
+            try (BufferedReader reader = new BufferedReader(new FileReader("Master 1.csv"))) {
+                reader.readLine(); // Skip header line
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] rowData = line.split(",");
+                    // Check if there are enough elements in rowData
+                    if (rowData.length >= 1) {
+                        writer.append(rowData[0]); // Write Tail Number
+                        for (int i = 0; i < 5; i++) { // Write 0s for other fields
+                            writer.append(",0");
+                        }
+                        writer.append("\n");
+                    }
+                }
+            }
+            writer.close(); // Close the FileWriter
+        }
+
+        // Read from LOG.csv
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             List<String[]> rows = new ArrayList<>();
             String line;
-
             String headerLine = reader.readLine();
             if (headerLine == null) {
                 outputArea.setText("LOG.csv file is empty.");
                 return;
             }
             String[] headers = headerLine.split(",");
-
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
@@ -89,8 +113,10 @@ class CSVParser {
                 if (value.equalsIgnoreCase(searchString)) {
                     userTailNumberRow = i;
                     for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
-                        String output = rows.get(userTailNumberRow)[j];
-                        editFields[j - 1].setText(output);
+                        if (userTailNumberRow < rows.size()) { // Ensure row exists
+                            String output = rows.get(userTailNumberRow)[j];
+                            editFields[j - 1].setText(output);
+                        }
                     }
                     return;
                 }
@@ -102,7 +128,11 @@ class CSVParser {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
         }
+    } catch (IOException e) {
+        e.printStackTrace();
+        outputArea.setText("Error occurred: " + e.getMessage());
     }
+}
 
     public void updateLogCSV(String searchString, String[] newData) {
         String csvFilePath = "LOG.csv";
