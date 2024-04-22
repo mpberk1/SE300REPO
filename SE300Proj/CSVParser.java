@@ -82,8 +82,8 @@ class CSVParser {
                     // Check if there are enough elements in rowData
                     if (rowData.length >= 1) {
                         writer.append(rowData[0]); // Write Tail Number
-                        for (int i = 0; i < 5; i++) { // Write 0s for other fields
-                            writer.append(",0");
+                        for (int i = 0; i < 5; i++) { 
+                            writer.append(",Update Maintence Here");
                         }
                         writer.append("\n");
                     }
