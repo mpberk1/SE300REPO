@@ -91,7 +91,7 @@ class GUI {
                     outputArea.append("Incorrect Unique Code!\n");
                 } else {
                     // Tail number not found
-                    outputArea.setText("Tail Number not found: " + myobj.getUserSearchString());
+                    outputArea.setText("Tail Number not found: N" + myobj.getUserSearchString());
                 }
             }
         });

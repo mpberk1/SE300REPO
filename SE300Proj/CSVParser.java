@@ -35,7 +35,7 @@ class CSVParser {
                 String value = rows.get(i)[0];
                 if (value.equalsIgnoreCase(searchString)) {
                     setCheck(true);
-                    outputArea.append("Tail Number found: " + searchString + "\n");
+                    outputArea.append("Tail Number found: N" + searchString + "\n");
                     userTailNumberRow = i;
                     if (getCheck()) {
                         if (rows.get(userTailNumberRow).length > 30) {
@@ -48,7 +48,11 @@ class CSVParser {
                                 outputArea.append("Year Manufactured: " + rows.get(userTailNumberRow)[4] + "\n");
                                 String date = rows.get(userTailNumberRow)[23];
                                 String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
-                                outputArea.append("Airworthiness Date: " + formattedDate + "\n");
+                                outputArea.append("Registration Expiration Date: " + rows.get(userTailNumberRow)[29] + "\n");
+                                //outputArea.append("Airworthiness Date: " + formattedDate + "\n");
+                                date = rows.get(userTailNumberRow)[30];
+                                formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
+                                
                                 updateButton.setEnabled(true);
                                 return;
                             } else {
@@ -62,7 +66,7 @@ class CSVParser {
                 }
             }
 
-            outputArea.setText("Tail Number not found: " + searchString);
+            outputArea.setText("Tail Number not found: " + searchString + "\n");
 
         } catch (IOException e) {
             e.printStackTrace();
