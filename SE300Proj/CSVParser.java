@@ -44,10 +44,15 @@ class CSVParser {
                                 for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
                                     editFields[j - 1].setEditable(true);
                                 }
+                                outputArea.append("Welcome User: " + rows.get(userTailNumberRow)[6].substring(0, 12) + "\n");
+                                outputArea.append("Year Manufactured: " + rows.get(userTailNumberRow)[4] + "\n");
+                                String date = rows.get(userTailNumberRow)[23];
+                                String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
+                                outputArea.append("Airworthiness Date: " + formattedDate + "\n");
                                 updateButton.setEnabled(true);
                                 return;
                             } else {
-                                outputArea.append("Incorrect Unique Code!\n");
+                               // outputArea.append("Incorrect Unique Code!\n");
                                 return;
                             }
                         } else {

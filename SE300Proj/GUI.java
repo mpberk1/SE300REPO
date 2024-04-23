@@ -101,7 +101,7 @@ class GUI {
                     newData[i] = editFields[i].getText();
                 }
                 ob1.updateLogCSV(myobj.getUserSearchString(), newData);
-                outputArea.setText("Data updated successfully!");
+                outputArea.setText("Log updated successfully!");
             }
         });
 
