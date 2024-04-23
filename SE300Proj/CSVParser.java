@@ -50,7 +50,7 @@ class CSVParser {
                                 outputArea.append("Airworthiness Date: " + formattedDate + "\n");
                                 date = rows.get(userTailNumberRow)[29];
                                 formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
-                                outputArea.append("Registration Expiration Date: " + formattedDate + "\n");
+                                outputArea.append("Registration Expr Date: " + formattedDate + "\n");
                                 
                                 updateButton.setEnabled(true);
                                 return;
