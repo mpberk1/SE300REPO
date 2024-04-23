@@ -49,8 +49,9 @@ class CSVParser {
                                 String date = rows.get(userTailNumberRow)[23];
                                 String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
                                 outputArea.append("Airworthiness Date: " + formattedDate + "\n");
-
-                                outputArea.append("Registration Expiration Date: " + rows.get(userTailNumberRow)[29] + "\n");
+                                date = rows.get(userTailNumberRow)[29];
+                                formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
+                                outputArea.append("Registration Expiration Date: " + formattedDate + "\n");
                                 
                                 updateButton.setEnabled(true);
                                 return;
