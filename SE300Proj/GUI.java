@@ -3,49 +3,66 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-
 class GUI {
     private String userSearchString;
     private String userUniqueCode;
 
     public static void main(String args[]) throws IOException {
-        JFrame f = new JFrame("Plane Search");
+
+        JFrame f = new JFrame("Digital Maintenance Log");
         GUI myobj = new GUI();
         CSVParser ob1 = new CSVParser();
+
+        JLabel titleLabel = new JLabel("Digital Maintenance Log");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setBounds(250, 10, 250, 30);
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        f.add(titleLabel);
 
         JTextField t12;
         t12 = new JTextField("Enter Tail Number");
         t12.setHorizontalAlignment(JTextField.CENTER);
-        t12.setBounds(150, 50, 200, 30);
+        t12.setBounds(250, 50, 200, 30);
 
         JTextField tUniqueCode;
         tUniqueCode = new JTextField("Enter Unique Code");
         tUniqueCode.setHorizontalAlignment(JTextField.CENTER);
-        tUniqueCode.setBounds(150, 100, 200, 30);
+        tUniqueCode.setBounds(250, 100, 200, 30);
 
         JButton grabButton = new JButton("Search");
-        grabButton.setBounds(200, 150, 100, 30);
+        grabButton.setBounds(300, 150, 100, 30);
 
         JButton closeButton = new JButton("Close");
-        closeButton.setBounds(50, 600, 100, 30);
+        closeButton.setBounds(100, 600, 100, 30);
 
         JButton updateButton = new JButton("Update");
-        updateButton.setBounds(200, 600, 100, 30);
+        updateButton.setBounds(300, 600, 100, 30);
         updateButton.setEnabled(false);
 
         JTextArea outputArea = new JTextArea();
         outputArea.setEditable(false);
-        outputArea.setBounds(50, 200, 400, 300);
+        outputArea.setBounds(50, 200, 600, 300);
 
         // Text fields for editing parts and dates
+        JLabel[] labels = new JLabel[5];
         JTextField[] editFields = new JTextField[5]; // Only 5 fields available in LOG.csv
+        labels[0] = new JLabel("Engine");
+        labels[1] = new JLabel("Empennage");
+        labels[2] = new JLabel("Wings");
+        labels[3] = new JLabel("Fuselage");
+        labels[4] = new JLabel("Date Maintained");
         for (int i = 0; i < 5; i++) {
             editFields[i] = new JTextField();
-            editFields[i].setBounds(150, 200 + i * 50, 200, 30);
+            editFields[i].setBounds(250, 200 + i * 50, 200, 30);
             editFields[i].setHorizontalAlignment(JTextField.CENTER);
             editFields[i].setEditable(false);
             editFields[i].setVisible(false); // Initially hide
+            labels[i].setBounds(250, 225 + i * 50, 200, 20); // Adjusted y-coordinate to be directly under the edit field
+            labels[i].setHorizontalAlignment(JLabel.CENTER);
+            labels[i].setVisible(false); // Initially hide
+
             f.add(editFields[i]);
+            f.add(labels[i]);
         }
 
         grabButton.addActionListener(new ActionListener() {
@@ -59,6 +76,7 @@ class GUI {
                 // Show the edit fields after search
                 for (int i = 0; i < 5; i++) {
                     editFields[i].setVisible(true);
+                    labels[i].setVisible(true);
                 }
             }
         });
@@ -87,7 +105,7 @@ class GUI {
         f.add(updateButton);
         f.add(outputArea);
 
-        f.setSize(500, 700);
+        f.setSize(700, 700); // Widened the frame
         f.setLayout(null);
         f.getContentPane().setBackground(new Color(135, 206, 235));
         f.setVisible(true);
