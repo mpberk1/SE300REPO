@@ -1,19 +1,10 @@
 import javax.swing.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.awt.*;
-=======
->>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
-=======
-import java.awt.*;
->>>>>>> 1051c99 (Migrated chnages)
 import java.awt.event.*;
 import java.io.IOException;
 
 class GUI {
     private String userSearchString;
-<<<<<<< HEAD
-<<<<<<< HEAD
     private String userUniqueCode;
 
     public static void main(String args[]) throws IOException {
@@ -75,84 +66,10 @@ class GUI {
             f.add(editFields[i]);
             f.add(labels[i]);
         }
-=======
-=======
-    private String userUniqueCode;
->>>>>>> 1051c99 (Migrated chnages)
-
-    public static void main(String args[]) throws IOException {
-
-        JFrame f = new JFrame("Digital Maintenance Log");
-        GUI myobj = new GUI();
-        CSVParser ob1 = new CSVParser();
-
-        JLabel titleLabel = new JLabel("Digital Maintenance Log");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        titleLabel.setBounds(250, 10, 250, 30);
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        f.add(titleLabel);
-
-        JTextField t12;
-        t12 = new JTextField("Enter Tail Number");
-        t12.setHorizontalAlignment(JTextField.CENTER);
-        t12.setBounds(250, 50, 200, 30);
-
-        JTextField tUniqueCode;
-        tUniqueCode = new JTextField("Enter Unique Code");
-        tUniqueCode.setHorizontalAlignment(JTextField.CENTER);
-        tUniqueCode.setBounds(250, 100, 200, 30);
-
-        JButton grabButton = new JButton("Search");
-        grabButton.setBounds(300, 150, 100, 30);
-
-        JButton closeButton = new JButton("Close");
-        closeButton.setBounds(100, 600, 100, 30);
-
-        JButton updateButton = new JButton("Update");
-        updateButton.setBounds(300, 600, 100, 30);
-        updateButton.setEnabled(false);
-
-        JTextArea outputArea = new JTextArea();
-        outputArea.setEditable(false);
-<<<<<<< HEAD
-        outputArea.setBounds(150, 300, 200, 100);
->>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
-=======
-        outputArea.setBounds(50, 200, 600, 300);
-        outputArea.setBackground(new Color(135, 206, 235));
-
-        // Text fields for editing parts and dates
-        JLabel[] labels = new JLabel[5];
-        JTextField[] editFields = new JTextField[5]; // Only 5 fields available in LOG.csv
-        labels[0] = new JLabel("Engine");
-        labels[1] = new JLabel("Empennage");
-        labels[2] = new JLabel("Wings");
-        labels[3] = new JLabel("Fuselage");
-        labels[4] = new JLabel("Date Maintained");
-        for (int i = 0; i < 5; i++) {
-            editFields[i] = new JTextField();
-            editFields[i].setBounds(250, 200 + i * 50, 200, 30);
-            editFields[i].setHorizontalAlignment(JTextField.CENTER);
-            editFields[i].setEditable(false);
-            editFields[i].setVisible(false); // Initially hide
-            labels[i].setBounds(250, 225 + i * 50, 200, 20); // Adjusted y-coordinate to be directly under the edit
-                                                             // field
-            labels[i].setHorizontalAlignment(JLabel.CENTER);
-            labels[i].setVisible(false); // Initially hide
-
-            f.add(editFields[i]);
-            f.add(labels[i]);
-        }
->>>>>>> 1051c99 (Migrated chnages)
 
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1051c99 (Migrated chnages)
                 myobj.setUserUniqueCode(tUniqueCode.getText());
         
                 ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
@@ -176,7 +93,6 @@ class GUI {
                 }
             }
         });
-<<<<<<< HEAD
 
         updateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -186,25 +102,6 @@ class GUI {
                 }
                 ob1.updateLogCSV(myobj.getUserSearchString(), newData);
                 outputArea.setText("Data updated successfully!");
-=======
-=======
->>>>>>> ee441fb (j)
-                //outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
-
-                // Call the parseCSV method of CSVParser
-                ob1.parseCSV(myobj.getUserSearchString(), outputArea);
->>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
-=======
-
-        updateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String[] newData = new String[5];
-                for (int i = 0; i < 5; i++) {
-                    newData[i] = editFields[i].getText();
-                }
-                ob1.updateLogCSV(myobj.getUserSearchString(), newData);
-                outputArea.setText("Data updated successfully!");
->>>>>>> 1051c99 (Migrated chnages)
             }
         });
 
@@ -215,8 +112,6 @@ class GUI {
         });
 
         f.add(t12);
-<<<<<<< HEAD
-<<<<<<< HEAD
         f.add(tUniqueCode);
         f.add(grabButton);
         f.add(closeButton);
@@ -231,27 +126,6 @@ class GUI {
         // Change button color
         UIManager.put("Button.background", UIManager.getColor("Panel.background"));
         UIManager.put("Button.foreground", UIManager.getColor("Panel.foreground"));
-=======
-=======
-        f.add(tUniqueCode);
->>>>>>> 1051c99 (Migrated chnages)
-        f.add(grabButton);
-        f.add(closeButton);
-        f.add(updateButton);
-        f.add(outputArea);
-
-        f.setSize(700, 700); // Widened the frame
-        f.setLayout(null);
-        f.getContentPane().setBackground(new Color(135, 206, 235));
-        f.setVisible(true);
-<<<<<<< HEAD
->>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
-=======
-
-        // Change button color
-        UIManager.put("Button.background", UIManager.getColor("Panel.background"));
-        UIManager.put("Button.foreground", UIManager.getColor("Panel.foreground"));
->>>>>>> 1051c99 (Migrated chnages)
     }
 
     public void setUserSearchString(String userSearchString) {
@@ -261,10 +135,6 @@ class GUI {
     public String getUserSearchString() {
         return userSearchString;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1051c99 (Migrated chnages)
 
     public void setUserUniqueCode(String userUniqueCode) {
         this.userUniqueCode = userUniqueCode;
@@ -273,11 +143,4 @@ class GUI {
     public String getUserUniqueCode() {
         return userUniqueCode;
     }
-<<<<<<< HEAD
-=======
->>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
-=======
->>>>>>> 1051c99 (Migrated chnages)
 }
-
-
