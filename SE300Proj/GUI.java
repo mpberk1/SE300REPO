@@ -96,6 +96,7 @@ class GUI {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
 <<<<<<< HEAD
+<<<<<<< HEAD
                 myobj.setUserUniqueCode(tUniqueCode.getText());
         
                 ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
@@ -129,6 +130,8 @@ class GUI {
                 ob1.updateLogCSV(myobj.getUserSearchString(), newData);
                 outputArea.setText("Data updated successfully!");
 =======
+=======
+>>>>>>> ee441fb (j)
                 //outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
 
                 // Call the parseCSV method of CSVParser

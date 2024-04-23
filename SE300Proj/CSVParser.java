@@ -182,6 +182,7 @@ class CSVParser {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
     } catch (IOException e) {
         e.printStackTrace();
@@ -228,6 +229,8 @@ class CSVParser {
         }
     }
 =======
+=======
+>>>>>>> ee441fb (j)
         }  
     }
 
@@ -242,8 +245,13 @@ class CSVParser {
         return check;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
     
 }
 >>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
+=======
+    
+}
+>>>>>>> ee441fb (j)
