@@ -7,7 +7,7 @@ class GUI {
     private String userSearchString;
     private String userUniqueCode;
 
-    public static void main(String args[]) throws IOException {
+    public void runProgram() throws IOException {
 
         JFrame f = new JFrame("Digital Maintenance Log");
         GUI myobj = new GUI();
