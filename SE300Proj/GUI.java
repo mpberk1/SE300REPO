@@ -42,6 +42,7 @@ class GUI {
         JTextArea outputArea = new JTextArea();
         outputArea.setEditable(false);
         outputArea.setBounds(50, 200, 600, 300);
+        outputArea.setBackground(new Color(135, 206, 235));
 
         // Text fields for editing parts and dates
         JLabel[] labels = new JLabel[5];
@@ -57,7 +58,8 @@ class GUI {
             editFields[i].setHorizontalAlignment(JTextField.CENTER);
             editFields[i].setEditable(false);
             editFields[i].setVisible(false); // Initially hide
-            labels[i].setBounds(250, 225 + i * 50, 200, 20); // Adjusted y-coordinate to be directly under the edit field
+            labels[i].setBounds(250, 225 + i * 50, 200, 20); // Adjusted y-coordinate to be directly under the edit
+                                                             // field
             labels[i].setHorizontalAlignment(JLabel.CENTER);
             labels[i].setVisible(false); // Initially hide
 
@@ -70,7 +72,8 @@ class GUI {
                 myobj.setUserSearchString(t12.getText());
                 myobj.setUserUniqueCode(tUniqueCode.getText());
                 // Call the parseMasterCSV method of CSVParser
-                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
+                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields,
+                        updateButton);
                 // Call the parseLogCSV method of CSVParser
                 ob1.parseLogCSV(myobj.getUserSearchString(), outputArea, editFields);
                 // Show the edit fields after search
