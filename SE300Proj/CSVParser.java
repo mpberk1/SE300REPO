@@ -22,7 +22,6 @@ class CSVParser {
                 outputArea.setText("CSV file is empty.");
                 return;
             }
-            String[] headers = headerLine.split(",");
 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -34,7 +33,7 @@ class CSVParser {
                 String value = rows.get(i)[0];
                 if (value.equalsIgnoreCase(searchString)) {
                     setCheck(true);
-                    outputArea.append("Tail Number found: " + searchString + "\n");
+                    outputArea.append("Tail Number found: N" + searchString + "\n");
                     userTailNumberRow = i;
                     if (getCheck()) {
                         if (rows.get(userTailNumberRow).length > 30) {
@@ -43,10 +42,19 @@ class CSVParser {
                                 for (int j = 1; j < 6; j++) { // Only 5 fields available in LOG.csv
                                     editFields[j - 1].setEditable(true);
                                 }
+                                outputArea.append("Welcome User: " + rows.get(userTailNumberRow)[6].substring(0, 12) + "\n");
+                                outputArea.append("Year Manufactured: " + rows.get(userTailNumberRow)[4] + "\n");
+                                String date = rows.get(userTailNumberRow)[23];
+                                String formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
+                                outputArea.append("Airworthiness Date: " + formattedDate + "\n");
+                                date = rows.get(userTailNumberRow)[29];
+                                formattedDate = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0,4);
+                                outputArea.append("Registration Expiration Date: " + formattedDate + "\n");
+                                
                                 updateButton.setEnabled(true);
                                 return;
                             } else {
-                                outputArea.append("Incorrect Unique Code!\n");
+                               // outputArea.append("Incorrect Unique Code!\n");
                                 return;
                             }
                         } else {
@@ -56,7 +64,7 @@ class CSVParser {
                 }
             }
 
-            outputArea.setText("Tail Number not found: " + searchString);
+            outputArea.setText("Tail Number not found: " + searchString + "\n");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,7 +108,7 @@ class CSVParser {
                 outputArea.setText("LOG.csv file is empty.");
                 return;
             }
-            String[] headers = headerLine.split(",");
+
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
