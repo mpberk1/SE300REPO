@@ -71,14 +71,16 @@ class GUI {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
                 myobj.setUserUniqueCode(tUniqueCode.getText());
-        
-                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
-        
-                // Check if the tail number is found and the code is correct before showing the edit fields
+
+                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields,
+                        updateButton);
+
+                // Check if the tail number is found and the code is correct before showing the
+                // edit fields
                 if (ob1.getCheck() && updateButton.isEnabled()) {
                     // Call the parseLogCSV method of CSVParser
                     ob1.parseLogCSV(myobj.getUserSearchString(), outputArea, editFields);
-        
+
                     // Show the edit fields after search
                     for (int i = 0; i < 5; i++) {
                         editFields[i].setVisible(true);
@@ -110,6 +112,25 @@ class GUI {
                 f.dispose(); // Close the JFrame
             }
         });
+        JButton repeatButton = new JButton("Back");
+        repeatButton.setBounds(500, 600, 100, 30);
+
+        repeatButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Reset fields and text areas
+                t12.setText("Enter Tail Number");
+                tUniqueCode.setText("Enter Unique Code");
+                outputArea.setText("");
+                for (int i = 0; i < 5; i++) {
+                    editFields[i].setText("");
+                    editFields[i].setVisible(false);
+                    labels[i].setVisible(false);
+                }
+                updateButton.setEnabled(false);
+            }
+        });
+
+        f.add(repeatButton);
 
         f.add(t12);
         f.add(tUniqueCode);
