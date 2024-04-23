@@ -23,7 +23,6 @@ class CSVParser {
                 outputArea.setText("CSV file is empty.");
                 return;
             }
-            String[] headers = headerLine.split(",");
 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -110,7 +109,7 @@ class CSVParser {
                 outputArea.setText("LOG.csv file is empty.");
                 return;
             }
-            String[] headers = headerLine.split(",");
+
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
