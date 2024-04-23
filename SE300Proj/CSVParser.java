@@ -1,17 +1,30 @@
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+=======
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
+<<<<<<< HEAD
 
 class CSVParser {
     private boolean check;
 
     public void parseMasterCSV(String searchString, String uniqueCode, JTextArea outputArea, JTextField[] editFields, JButton updateButton) {
+=======
+class CSVParser {
+    private boolean check;
+
+    public void parseCSV(String searchString, JTextArea outputArea) {
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
         String csvFilePath = "Master 1.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
@@ -19,9 +32,13 @@ class CSVParser {
             String line;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // Read the header row
 >>>>>>> d280e34 (message)
+=======
+            // Read the header row
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
             String headerLine = reader.readLine();
             if (headerLine == null) {
                 outputArea.setText("CSV file is empty.");
@@ -30,17 +47,29 @@ class CSVParser {
             String[] headers = headerLine.split(",");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // Read and process data rows
     
 >>>>>>> d280e34 (message)
+=======
+            // Read and process data rows
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             int userTailNumberRow = -1;
+=======
+            // Now you have your data in a List<String[]>.
+            // Access it like rows.get(rowIndex)[columnIndex].
+            // For example:
+            // String value = rows.get(0)[0]; // First row, first column
+            int userTailNumberRow = 0;
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
             for (int i = 0; i < rows.size(); i++) {
                 String value = rows.get(i)[0];
                 if (value.equalsIgnoreCase(searchString)) {
@@ -48,6 +77,7 @@ class CSVParser {
                     outputArea.append("Tail Number found: " + searchString + "\n");
                     userTailNumberRow = i;
                     if (getCheck()) {
+<<<<<<< HEAD
                         if (rows.get(userTailNumberRow).length > 30) {
                             String storedUniqueCode = rows.get(userTailNumberRow)[30];
                             if (storedUniqueCode.equals(uniqueCode)) {
@@ -133,10 +163,25 @@ class CSVParser {
             }
 
             outputArea.setText("Tail Number not found in LOG.csv: " + searchString);
+=======
+                        for (int j = 1; j < 34; j++) {
+                            String output = rows.get(userTailNumberRow)[j];
+                            outputArea.append("UserInfo " + output + "\n");
+                        }
+                        return; // Exit the method if found
+                    }
+            }
+        }
+
+
+            // If not found
+            outputArea.setText("Text not found: " + searchString);
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 
         } catch (IOException e) {
             e.printStackTrace();
             outputArea.setText("Error occurred: " + e.getMessage());
+<<<<<<< HEAD
         }
     } catch (IOException e) {
         e.printStackTrace();
@@ -182,6 +227,12 @@ class CSVParser {
             e.printStackTrace();
         }
     }
+=======
+        }  
+    }
+
+   
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 
     public void setCheck(boolean check) {
         this.check = check;
@@ -190,4 +241,9 @@ class CSVParser {
     public boolean getCheck() {
         return check;
     }
+<<<<<<< HEAD
 }
+=======
+    
+}
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")

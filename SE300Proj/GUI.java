@@ -1,10 +1,14 @@
 import javax.swing.*;
+<<<<<<< HEAD
 import java.awt.*;
+=======
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 import java.awt.event.*;
 import java.io.IOException;
 
 class GUI {
     private String userSearchString;
+<<<<<<< HEAD
     private String userUniqueCode;
 
     public static void main(String args[]) throws IOException {
@@ -66,10 +70,32 @@ class GUI {
             f.add(editFields[i]);
             f.add(labels[i]);
         }
+=======
+
+    public static void main(String args[]) throws IOException {
+        JFrame f = new JFrame("Plane Search");
+        GUI myobj = new GUI();
+        CSVParser ob1 = new CSVParser();
+        JTextField t12;
+        t12 = new JTextField("EPIC GAMER Name!");
+        t12.setHorizontalAlignment(JTextField.CENTER); // Center align the text
+        t12.setBounds(150, 200, 200, 30);
+
+        JButton grabButton = new JButton("Grab Text");
+        grabButton.setBounds(200, 250, 100, 30);
+
+        JButton closeButton = new JButton("Close");
+        closeButton.setBounds(200, 400, 100, 30);
+
+        JTextArea outputArea = new JTextArea();
+        outputArea.setEditable(false);
+        outputArea.setBounds(150, 300, 200, 100);
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 
         grabButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
+<<<<<<< HEAD
                 myobj.setUserUniqueCode(tUniqueCode.getText());
         
                 ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
@@ -102,6 +128,12 @@ class GUI {
                 }
                 ob1.updateLogCSV(myobj.getUserSearchString(), newData);
                 outputArea.setText("Data updated successfully!");
+=======
+                //outputArea.setText("Text grabbed: " + myobj.getUserSearchString());
+
+                // Call the parseCSV method of CSVParser
+                ob1.parseCSV(myobj.getUserSearchString(), outputArea);
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
             }
         });
 
@@ -112,6 +144,7 @@ class GUI {
         });
 
         f.add(t12);
+<<<<<<< HEAD
         f.add(tUniqueCode);
         f.add(grabButton);
         f.add(closeButton);
@@ -126,6 +159,15 @@ class GUI {
         // Change button color
         UIManager.put("Button.background", UIManager.getColor("Panel.background"));
         UIManager.put("Button.foreground", UIManager.getColor("Panel.foreground"));
+=======
+        f.add(grabButton);
+        f.add(closeButton);
+        f.add(outputArea);
+
+        f.setSize(1000, 1000);
+        f.setLayout(null);
+        f.setVisible(true);
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
     }
 
     public void setUserSearchString(String userSearchString) {
@@ -135,6 +177,7 @@ class GUI {
     public String getUserSearchString() {
         return userSearchString;
     }
+<<<<<<< HEAD
 
     public void setUserUniqueCode(String userUniqueCode) {
         this.userUniqueCode = userUniqueCode;
@@ -143,4 +186,6 @@ class GUI {
     public String getUserUniqueCode() {
         return userUniqueCode;
     }
+=======
+>>>>>>> bb1e861 (Revert "Headers Included and .gitignored a file")
 }
