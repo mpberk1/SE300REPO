@@ -71,15 +71,25 @@ class GUI {
             public void actionPerformed(ActionEvent e) {
                 myobj.setUserSearchString(t12.getText());
                 myobj.setUserUniqueCode(tUniqueCode.getText());
-                // Call the parseMasterCSV method of CSVParser
-                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields,
-                        updateButton);
-                // Call the parseLogCSV method of CSVParser
-                ob1.parseLogCSV(myobj.getUserSearchString(), outputArea, editFields);
-                // Show the edit fields after search
-                for (int i = 0; i < 5; i++) {
-                    editFields[i].setVisible(true);
-                    labels[i].setVisible(true);
+        
+                ob1.parseMasterCSV(myobj.getUserSearchString(), myobj.getUserUniqueCode(), outputArea, editFields, updateButton);
+        
+                // Check if the tail number is found and the code is correct before showing the edit fields
+                if (ob1.getCheck() && updateButton.isEnabled()) {
+                    // Call the parseLogCSV method of CSVParser
+                    ob1.parseLogCSV(myobj.getUserSearchString(), outputArea, editFields);
+        
+                    // Show the edit fields after search
+                    for (int i = 0; i < 5; i++) {
+                        editFields[i].setVisible(true);
+                        labels[i].setVisible(true);
+                    }
+                } else if (ob1.getCheck() && !updateButton.isEnabled()) {
+                    // Tail number is found but unique code is incorrect
+                    outputArea.append("Incorrect Unique Code!\n");
+                } else {
+                    // Tail number not found
+                    outputArea.setText("Tail Number not found: " + myobj.getUserSearchString());
                 }
             }
         });
