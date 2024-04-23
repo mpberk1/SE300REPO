@@ -18,6 +18,10 @@ class CSVParser {
             List<String[]> rows = new ArrayList<>();
             String line;
 
+<<<<<<< HEAD
+=======
+            // Read the header row
+>>>>>>> d280e34 (message)
             String headerLine = reader.readLine();
             if (headerLine == null) {
                 outputArea.setText("CSV file is empty.");
@@ -25,11 +29,17 @@ class CSVParser {
             }
             String[] headers = headerLine.split(",");
 
+<<<<<<< HEAD
+=======
+            // Read and process data rows
+    
+>>>>>>> d280e34 (message)
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 rows.add(data);
             }
 
+<<<<<<< HEAD
             int userTailNumberRow = -1;
             for (int i = 0; i < rows.size(); i++) {
                 String value = rows.get(i)[0];
@@ -155,6 +165,14 @@ class CSVParser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+=======
+            // Now you have your data in a List<String[]>.
+            // Access it like rows.get(rowIndex)[columnIndex].
+            // For example:
+            String value = rows.get(200000)[0]; // First row, first column
+            System.out.println(headers[1]);
+            System.out.println(value);
+>>>>>>> d280e34 (message)
 
         } catch (IOException e) {
             e.printStackTrace();
