@@ -1,4 +1,0 @@
-frame 
-date
-weight
-validate
